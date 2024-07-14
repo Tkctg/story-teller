@@ -38,11 +38,11 @@
                 <div class="story-list">
                     {% for story in stories %}
                     <div class="story">
-                        <h4>{{ story.date.strftime('%B %d, %Y') }}</h4>
+                        <h4>{{ story.date }}</h4>
                         <div class="story-image"></div>
                         <p class="category">{{ story.category }}</p>
                         <h3>{{ story.title }}</h3>
-                        <p class="excerpt">{{ story.excerpt }}</p>
+                        <p class="excerpt">{{ story.content[:100] }}...</p>
                         <a href="#">Read More...</a>
                     </div>
                     {% endfor %}
