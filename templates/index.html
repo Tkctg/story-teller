@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Short Story Hub</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Story Hub</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1 class="logo">Short Story Hub</h1>
+            <div class="logo">
+                <img src="{{ url_for('static', filename='photos/logo.png') }}" alt="Story Hub Logo">
+                <span>STORY HUB</span>
+            </div>
             <nav>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Submit</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="{{ url_for('index') }}">Home</a></li>
+                    <li><a href="{{ url_for('category') }}">Category</a></li>
+                    <li><a href="{{ url_for('upload') }}">Upload</a></li>
+                    <li><a href="{{ url_for('about') }}">About</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
                 </ul>
             </nav>
         </div>
@@ -25,34 +28,51 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h2>Welcome to Short Story Hub</h2>
-                <p>Discover and enjoy a wide range of short stories from various genres.</p>
+                <h1>STORY HUB</h1>
             </div>
         </section>
 
-        <section class="stories">
+        <section class="latest-stories">
             <div class="container">
                 <h2>Latest Stories</h2>
                 <div class="story-list">
+                    {% for story in stories %}
                     <div class="story">
-                        <h3><a href="#">Story Title 1</a></h3>
-                        <p class="author">By Author Name</p>
-                        <p class="excerpt">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h4>{{ story.date.strftime('%B %d, %Y') }}</h4>
+                        <div class="story-image"></div>
+                        <p class="category">{{ story.category }}</p>
+                        <h3>{{ story.title }}</h3>
+                        <p class="excerpt">{{ story.excerpt }}</p>
+                        <a href="#">Read More...</a>
                     </div>
-                    <div class="story">
-                        <h3><a href="#">Story Title 2</a></h3>
-                        <p class="author">By Author Name</p>
-                        <p class="excerpt">Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    
+                    {% endfor %}
                 </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <div class="container">
+                <h2>Category</h2>
+                <div class="category-list">
+                    <div class="category">A</div>
+                    <div class="category">B</div>
+                    <div class="category">C</div>
+                    <div class="category">D</div>
+                    <div class="category">E</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="container">
+                <h2>ABOUT</h2>
             </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Story-teller. All right reserved.</p>
+            <p>&copy; 2024 Story Hub. All rights reserved.</p>
         </div>
     </footer>
 </body>
